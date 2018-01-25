@@ -4,7 +4,11 @@
     <meta charset="utf-8">
     <style>
     .mac {
-      margin-bottom: 50px;
+      margin-bottom: 10px;
+    }
+
+    .ip {
+      margin-bottom: 30px;
     }
 
     button {
@@ -29,7 +33,12 @@
   <body>
     <div class="mac">
       <span>MAC address</span>
-      <input type="text" onchange="onChangeMAC()"/>
+      <input type="text" id="mac"/>
+    </div>
+
+    <div class="ip">
+      <span>IP Server</span>
+      <input type="text" id="ip"/>
     </div>
 
     <div>
@@ -38,40 +47,35 @@
     </div>
 
     <script>
+
+    var mac = "";
+
     function on() {
       console.log('on');
 
-      $.ajax({
-        url: "http://localhost:8000/control/actions/",
-        type: "post", // or "get"
-        // data: '{"action":"on"}',
-        data: JSON.stringify({
-          "action": "on",
-          "mac": "00:21:13:01:FA:CA",
-        }),
-        success: function(data) {
-          alert(data.result);
-        }});
+      var e = document.getElementById('mac');
+      var ip = document.getElementById('ip');
+      var formData = new FormData();
+      formData.append("action", "on");
+      formData.append("mac", e.value)
+      var request = new XMLHttpRequest();
+      const finali = `http://${ip.value}:8000/control/actions/`;
+      request.open("POST", finali);
+      request.send(formData);
     }
 
     function off() {
       console.log('off');
 
-      $.ajax({
-        url: "http://localhost:8000/control/actions/",
-        type: "post", // or "get"
-        // data: '{"action":"on"}',
-        data: JSON.stringify({
-          "action": "off",
-          "mac": "00:21:13:01:FA:CA",
-        }),
-        success: function(data) {
-          alert(data.result);
-        }});
-    }
-
-    function onChangeMAC(e) {
-      console.log(e);
+      var e = document.getElementById('mac');
+      var ip = document.getElementById('ip');
+      var formData = new FormData();
+      formData.append("action", "off");
+      formData.append("mac", e.value)
+      var request = new XMLHttpRequest();
+      const finali = `http://${ip.value}:8000/control/actions/`;
+      request.open("POST", finali);
+      request.send(formData);
     }
     </script>
   </body>
