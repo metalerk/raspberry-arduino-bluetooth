@@ -2,9 +2,22 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title></title>
   </head>
   <body>
-    <h1>Hola</h1>
+    <div class="mac">
+      <span>MAC address</span>
+      <input type="text" onchange="onChangeMAC()"/>
+    </div>
+
+    <div>
+      <button class="on" onclick="on()">On</button>
+      <button class="off" onclick="off()">Off</button>
+    </div>
+
+    <script src="scripts.js"></script>
   </body>
 </html>
