@@ -1,0 +1,18 @@
+.mac {
+  margin-bottom: 50px;
+}
+
+button {
+  width: 200px;
+  height: 200px;
+  font-size: 30px;
+  margin-right: 100px;
+}
+
+.on {
+  background-color: green;
+}
+
+.off {
+  background-color: red;
+}
