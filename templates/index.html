@@ -2,7 +2,26 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+    .mac {
+      margin-bottom: 50px;
+    }
+
+    button {
+      width: 200px;
+      height: 200px;
+      font-size: 30px;
+      margin-right: 100px;
+    }
+
+    .on {
+      background-color: green;
+    }
+
+    .off {
+      background-color: red;
+    }
+    </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <title></title>
@@ -18,6 +37,42 @@
       <button class="off" onclick="off()">Off</button>
     </div>
 
-    <script src="scripts.js"></script>
+    <script>
+    function on() {
+      console.log('on');
+
+      $.ajax({
+        url: "http://localhost:8000/control/actions/",
+        type: "post", // or "get"
+        // data: '{"action":"on"}',
+        data: JSON.stringify({
+          "command": "on",
+          "mac": "00:21:13:01:FA:CA",
+        }),
+        success: function(data) {
+          alert(data.result);
+        }});
+    }
+
+    function off() {
+      console.log('off');
+
+      $.ajax({
+        url: "http://localhost:8000/control/actions/",
+        type: "post", // or "get"
+        // data: '{"action":"on"}',
+        data: JSON.stringify({
+          "command": "off",
+          "mac": "00:21:13:01:FA:CA",
+        }),
+        success: function(data) {
+          alert(data.result);
+        }});
+    }
+
+    function onChangeMAC(e) {
+      console.log(e);
+    }
+    </script>
   </body>
 </html>
